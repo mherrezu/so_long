@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:14:47 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/12 17:48:38 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:15:34 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ typedef struct s_game
 //MAIN.C 
 int		map_checker(t_game map);
 void	free_map(char **map);
-char	**read_map(char *file_map);
+char	**get_map(char *file_map);
 char	check_extension_file(char file_name);
 int		main(int argc, char **argv);
+void	print_map(char **map); //DELETE LATER
 
 //MAP_UTILS.C
 int		empty_map(t_game map);

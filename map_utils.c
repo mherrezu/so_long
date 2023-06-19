@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:16:14 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/12 17:50:31 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:57:39 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,18 @@ int	empty_map(t_game map)
 
 int	rectang_map(t_game map)
 {
-	
+	size_t	len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(map[0]);
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) != len)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int	wrong_map(t_game map)

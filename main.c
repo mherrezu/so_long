@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:15:59 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/12 17:43:10 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:14:58 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;	
+	}
+	free(map);
+}
 
 int	map_checker(t_game map)
 {
@@ -27,17 +40,7 @@ int	map_checker(t_game map)
 	return (0);
 }
 
-void	free_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		free(map[i]);
-	free(map);
-}
-
-char	**read_map(char *file_map)
+char	**get_map(char *file_map)
 {
 	int		i;
 	int		fd;
@@ -83,10 +86,23 @@ int	main(int argc, char **argv)
 		return (ft_printf(PARAM_ERROR), 1);
 	if (check_extension_file(argv[1]) == 1)
 		return (ft_printf(EXT_ERROR), 1);
-	game.map = read_map(argv[1]);
+	game.map = get_map(argv[1]);
 	if (!game.map)
 		return (1);
 	if (map_checker(game.map) == 1)
 		return (free_map(game.map), 1);
+	print_map(game.map);
 	return (0);
+}
+
+void print_map(t_game map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
 }
