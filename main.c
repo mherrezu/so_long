@@ -6,7 +6,7 @@
 /*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:15:59 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/19 18:14:58 by mariah.          ###   ########.fr       */
+/*   Updated: 2023/06/20 19:13:53 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	free_map(char **map)
 
 int	map_checker(t_game map)
 {
-	if (empty_map(map) == 1)
+	if (empty_check(map) == 1)
 		return (ft_printf(EMPTY_ERROR), 1);
-	if (rectang_map(map) == 1)
+	if (rectang_check(map) == 1)
 		return (ft_printf(RECT_ERROR), 1);
-	if (wrong_map(map) == 1)
-		return (ft_printf(WRONG_ERROR), 1);
-	if (walls_map(map) == 1)
+	if (items_check(map) == 1)
+		return (ft_printf(ITEMS_ERROR), 1);
+	if (walls_check(map) == 1)
 		return (ft_printf(WALL_ERROR), 1);
-	if (min_tiles(map) == 1)
+	if (min_tiles_check(map) == 1)
 		return (ft_printf(MIN_COMP_ERROR), 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:14:47 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/19 18:15:34 by mariah.          ###   ########.fr       */
+/*   Updated: 2023/06/20 19:14:04 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define EXT_ERROR "Error - File has invalid file extension\n"
 # define EMPTY_ERROR "Error - Map is empty\n"
 # define RECT_ERROR "Error - Map is not rectangle.\n"
-# define WRONG_ERROR "Error - Map have the wrongs components\n"
+# define ITEMS_ERROR "Error - Map have the wrongs components\n"
 # define WALL_ERROR "Error - Map don't have close walls\n"
 # define MIN_COMP_ERROR "Error - You don't have the correct components\n"
 # define PATH_ERROR "Error - There is not a valid path\n"
