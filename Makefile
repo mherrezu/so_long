@@ -3,60 +3,60 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+         #
+#    By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 11:16:26 by mherrezu          #+#    #+#              #
-#    Updated: 2023/06/19 17:50:45 by mariah.          ###   ########.fr        #
+#    Updated: 2023/06/21 13:20:16 by mherrezu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 MLX	= ./MLX42
-LIBFT	= ./libft
-PRINTF	= ./ft_printf
+PRINT_LIBFT	= ./print_libft
 GNL	= ./get_next_line
 
-HEADERS	= -I ./includes -I ${LIBMLX}/include -I ${LIBFT} -I ${LIBGN} -I ${LIBPF}
-GNL	= -lglfw -L"/Users/erigolon/.brew/opt/glfw/lib"
-LIBS	= ${GNL} ${MLX}/libmlx42.a ${LIBFT}/libft.a ${PRINTF}/libftprintf.a ${GNL}/get_next_line.a
-SRCS	= main.c map_utils.c
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+NORMI = norminette .
+
+HEADERS	= -I ./includes -I ${MLX}/include -I ${PRINT_LIBFT} -I ${GNL}
+GL	= -Iinclude -lglfw -L"/Users/mherrezu/.brew/opt/glfw/lib/"
+LIBS	= ${GL} ${MLX}/libmlx42.a ${PRINT_LIBFT}/libft.a ${GNL}/getnextline.a
+SRCS	= main.c basic_map_check.c compl_map_check.c
 
 OBJS	= ${SRCS:.c=.o}
 
-# //= Recipes =//
 
-all: libft mlx printf gnl ${NAME}
+all: libft mlx gnl ${NAME}
 
 libft:
-	@${MAKE} -C ${LIBFT}
-
-mlx:
-	@${MAKE} -C ${MLX}
-
-printf:
-	@${MAKE} -C ${PRINTF}
+	@$(MAKE) -C ${PRINT_LIBFT}
+	@echo "Print_Libft compiled successfully\n"
 
 gnl:
 	@${MAKE} -C ${GNL}
+	@echo "GNL compiled successfully\n"
+	
+mlx:
+	@${MAKE} -C ${MLX}
+	@echo "MLX42 compiled successfully\n"
 
 %.o: %.c
 	@${CC} ${CFLAGS} -o $@ -c $< ${HEADERS}
 
 ${NAME}: ${OBJS}
-	@${CC} ${DFLAGS} ${OBJS} ${LIBS} ${HEADERS} -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} ${LIBS} ${HEADERS} -o ${NAME}
 
 clean:
 	@rm -f ${OBJS}
-	@${MAKE} -C ${LIBFT} clean
+	@${MAKE} -C ${PRINT_LIBFT} clean
 	@${MAKE} -C ${MLX} clean
-	@${MAKE} -C ${PRINTF} clean
 	@${MAKE} -C ${GNL} clean
 
 fclean: clean
 	@rm -f ${NAME}
-	@${MAKE} -C ${LIBFT} fclean
+	@${MAKE} -C ${PRINT_LIBFT} fclean
 	@${MAKE} -C ${MLX} fclean
-	@${MAKE} -C ${PRINTF} fclean
 	@${MAKE} -C ${GNL} fclean
 	
 re: clean all

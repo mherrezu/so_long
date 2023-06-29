@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:15:59 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/20 19:13:53 by mariah.          ###   ########.fr       */
+/*   Updated: 2023/06/29 14:16:06 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	free_map(char **map)
 	while (map[i])
 	{
 		free(map[i]);
-		i++;	
+		i++;
 	}
 	free(map);
 }
 
-int	map_checker(t_game map)
+int	map_checker(char **map)
 {
 	if (empty_check(map) == 1)
 		return (ft_printf(EMPTY_ERROR), 1);
@@ -37,6 +37,7 @@ int	map_checker(t_game map)
 		return (ft_printf(WALL_ERROR), 1);
 	if (min_tiles_check(map) == 1)
 		return (ft_printf(MIN_COMP_ERROR), 1);
+	ft_printf("MAP is correct. No empty, rectangular, all items, walls and tiles.\n");
 	return (0);
 }
 
@@ -44,33 +45,34 @@ char	**get_map(char *file_map)
 {
 	int		i;
 	int		fd;
-	char	**temp;
+	char	*aux;
 	char	**map;
-
 	i = 0;
+	aux = ft_calloc(BUFF_SIZE + 1, sizeof(char));
+	if (!aux)
+		return (0);
 	fd = open(file_map, O_RDONLY);
+	//ft_printf("FD: %i\n", fd);
 	if (fd < 0)
 		return (0);
-	temp = ft_calloc(BUFF_SIZE + 1, sizeof(char));
-	if (!temp)
-		return (0);
-	i = read(fd, temp, BUFF_SIZE);
+	i = read(fd, aux, BUFF_SIZE);
 	if (i == -1 || i == 0)
 	{
-		free(temp);
+		free(aux);
 		return (0);
 	}
-	map = ft_split(temp, '\n');
-	free(temp);
+	map = ft_split((const char *)aux, '\n');
+	print_map(map);
+	free(aux);
 	close(fd);
 	return (map);
 }
 
-char	check_extension_file(char file_name)
+char	check_extension_file(char *file_name)
 {
 	int	i;
 
-	i = ft_strlen(file_name) - 1;
+	i = ft_strlen((const char*)file_name) - 1;
 	if (file_name[i] != 'r' || file_name[i - 1] != 'e'
 		|| file_name[i - 2] != 'b'
 		|| file_name[i - 3] != '.')
@@ -82,6 +84,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	system("leaks -q so_long");
 	if (argc != 2)
 		return (ft_printf(PARAM_ERROR), 1);
 	if (check_extension_file(argv[1]) == 1)
@@ -91,14 +94,14 @@ int	main(int argc, char **argv)
 		return (1);
 	if (map_checker(game.map) == 1)
 		return (free_map(game.map), 1);
-	print_map(game.map);
+	start_size_collect(game, game.map);
+	check_path(game);
 	return (0);
 }
 
-void print_map(t_game map)
+void print_map(char **map)
 {
 	int	i;
-
 	i = 0;
 	while (map[i])
 	{
