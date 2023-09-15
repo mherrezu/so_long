@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:14:47 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/29 14:46:34 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:50:34 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@
 # define WALL_ERROR "Error - Map don't have close walls\n"
 # define MIN_COMP_ERROR "Error - You don't have the correct components\n"
 # define PATH_ERROR "Error - There is not a valid path\n"
+# define MAP_SUCCESS "SUCCESS! - Your map is perfect!\n"
 
 # define BUFF_SIZE 10000
 # define MOVE		32
 
 typedef struct s_game
 {
-	struct s_textures	*textu;
-	struct s_images		*imag;
+	struct s_textures	*textures;
+	struct s_images		*image;
 	mlx_t				*mlx;
 	char				**map;
 	int					map_width;
@@ -52,6 +53,26 @@ typedef struct s_game
 	int					total_collect;
 	char				**aux_map;
 }						t_game;
+
+typedef struct s_textures
+{
+	mlx_texture_t	*floor;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*player;
+	mlx_texture_t	*collect;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*finish;
+}					t_textures;
+
+typedef struct s_images
+{
+	mlx_image_t		*floor;
+	mlx_image_t		*wall;
+	mlx_image_t		*player;
+	mlx_image_t		*collect;
+	mlx_image_t		*exit;
+	mlx_image_t		*finish;
+}					t_images;
 
 //MAIN.C 
 int		map_checker(char **map);
@@ -69,9 +90,16 @@ int		walls_check(char **map);
 int		min_tiles_check(char **map);
 
 //COMPL_MAP_CHECK.C
-void	start_size_collect(t_game game, char **map);
-void	check_path(t_game game);
-int		flood_check(char **map);
-// void	start_player_pos(char **map);
+int		start_size_collect(t_game *game, char **map);
+int		check_path(t_game *game);
+int		*start_player(char **map);
+void	flood_fill(t_game *game, int x, int y);
+int		flood_checker(char **map);
+
+// GAME_VISUAL.C
+int		start_game(t_game *game);
+void	start_textures(t_game *game);
+void	start_images(t_game *game);
+void	visualize_map(t_game *game, t_images *image);
 
 #endif

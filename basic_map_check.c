@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:16:14 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/06/29 13:16:17 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/15 13:15:35 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	empty_check(char **map)
 {
-	if (!map[0])
+	if (map == (void *)0)
 		return (1);
 	return (0);
 }
