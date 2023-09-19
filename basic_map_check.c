@@ -6,15 +6,30 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:16:14 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/15 13:15:35 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:55:04 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+//Check the map doesnt have concadenated '\n'
+int	jumps_check(char *aux)
+{
+	int		j;
+
+	j = 0;
+	while (aux[j])
+	{
+		if (aux[j] == '\n' && aux[j + 1] == '\n')
+			return (ft_printf(MAP_ERROR), 1);
+		j++;
+	}
+	return (0);
+}
+
 int	empty_check(char **map)
 {
-	if (map == (void *)0)
+	if (!map[0])
 		return (1);
 	return (0);
 }
@@ -86,34 +101,5 @@ int	walls_check(char **map)
 			return (1);
 		j++;
 	}
-	return (0);
-}
-
-//Map must have at least 1 entry, 1 exit and 1 collectible
-int	min_tiles_check(char **map)
-{
-	int	i;
-	int	j;
-	int	entry_exit;
-	int	collect;
-
-	entry_exit = 0;
-	collect = 0;
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'E' || map[i][j] == 'P')
-				entry_exit++;
-			if (map[i][j] == 'C')
-				collect++;
-			j++;
-		}
-		i++;
-	}
-	if (entry_exit != 2 || collect < 1)
-		return (1);
 	return (0);
 }

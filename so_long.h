@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:14:47 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/15 13:50:34 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:55:41 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define RECT_ERROR "Error - Map is not rectangle.\n"
 # define ITEMS_ERROR "Error - Map have the wrongs components\n"
 # define WALL_ERROR "Error - Map don't have close walls\n"
+# define MAP_ERROR "Error - Map is wrong\n"
 # define MIN_COMP_ERROR "Error - You don't have the correct components\n"
 # define PATH_ERROR "Error - There is not a valid path\n"
 # define MAP_SUCCESS "SUCCESS! - Your map is perfect!\n"
@@ -83,11 +84,11 @@ int		main(int argc, char **argv);
 void	print_map(char **map); //DELETE LATER
 
 //BASIC_MAP_CHECK.C
+int		jumps_check(char *aux);
 int		empty_check(char **map);
 int		rectang_check(char **map);
 int		items_check(char **map);
 int		walls_check(char **map);
-int		min_tiles_check(char **map);
 
 //COMPL_MAP_CHECK.C
 int		start_size_collect(t_game *game, char **map);
@@ -101,5 +102,17 @@ int		start_game(t_game *game);
 void	start_textures(t_game *game);
 void	start_images(t_game *game);
 void	visualize_map(t_game *game, t_images *image);
+void	draw_basics(t_game *game, t_images *image);
 
+// MOVEMENTS.C
+void	adapt_key_hook(mlx_key_data_t keydata, void *param);
+void	go_up(t_game *game);
+void	go_down(t_game *game);
+void	go_left(t_game *game);
+void	go_right(t_game *game);
+
+// COLLECTS.C
+int		min_items_check(char **map);
+void	manage_collect_exit(t_game *game);
+void	change_view(t_game *game);
 #endif

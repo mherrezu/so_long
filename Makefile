@@ -6,7 +6,7 @@
 #    By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/17 11:16:26 by mherrezu          #+#    #+#              #
-#    Updated: 2023/09/14 12:53:41 by mherrezu         ###   ########.fr        #
+#    Updated: 2023/09/19 15:10:25 by mherrezu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ NORMI = norminette .
 HEADERS	= -I ./includes -I ${MLX}/include -I ${PRINT_LIBFT} -I ${GNL}
 GL	= -Iinclude -lglfw -L"/Users/mherrezu/.brew/opt/glfw/lib/"
 LIBS	= ${GL} ${MLX}/libmlx42.a ${PRINT_LIBFT}/libft.a ${GNL}/getnextline.a
-SRCS	= main.c basic_map_check.c compl_map_check.c game_visual.c
+SRCS	= main.c basic_map_check.c compl_map_check.c game_visual.c movements.c \
+			collects.c
 
 OBJS	= ${SRCS:.c=.o}
 

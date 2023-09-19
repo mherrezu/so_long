@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:42:06 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/15 13:17:39 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:57:36 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	start_size_collect(t_game *game, char **map)
 	i = 0;
 	while (map[i++])
 		game->map_height = i * 32;
-	if (game->total_collect == 0 || game->map_width == 0 || game->map_height == 0)
+	if (game->total_collect == 0 || game->map_width == 0
+		|| game->map_height == 0)
 		return (1);
 	return (0);
 }
@@ -50,16 +51,9 @@ int	check_path(t_game *game)
 
 	pos = start_player(game->map);
 	aux = start_player(game->aux_map);
-	// ft_printf("\nMAP:\n");
-	// print_map(game->map);
-	// ft_printf("\nAUX MAP:\n");
-	// print_map(game->aux_map);
 	flood_fill(game, pos[1], pos[0]);
-	// ft_printf("\nFLOOD AUX MAP:\n");
-	// print_map(game->aux_map);
 	if (flood_checker(game->aux_map) == 1)
 	{
-		// ft_printf("\nPATH INCORRECT!!!\n");
 		free (aux);
 		free (pos);
 		free_map(game->aux_map);
@@ -68,7 +62,7 @@ int	check_path(t_game *game)
 	free (aux);
 	free (pos);
 	free_map(game->aux_map);
-	return (0);
+	return (ft_printf(MAP_SUCCESS), 0);
 }
 
 //Look for P in the map (x,y)
