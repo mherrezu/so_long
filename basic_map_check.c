@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:16:14 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/19 14:55:04 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:00:11 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,19 @@ int	empty_check(char **map)
 //Map must be rectangular
 int	rectang_check(char **map)
 {
-	size_t	len;
-	int		i;
+	size_t	len_x;
+	size_t	y;
 
-	i = 0;
-	len = ft_strlen(map[0]);
-	while (map[i])
+	y = 0;
+	len_x = ft_strlen(map[0]);
+	while (map[y])
 	{
-		if (ft_strlen(map[i]) != len)
+		if (ft_strlen(map[y]) != len_x)
 			return (1);
-		i++;
+		y++;
 	}
+	if (y == len_x)
+		return (1);
 	return (0);
 }
 
@@ -95,7 +97,7 @@ int	walls_check(char **map)
 		i++;
 	}
 	j = 0;
-	while (i < (y - 1))
+	while (j < (y - 1))
 	{
 		if (map[j][0] != '1' || map[j][x - 1] != '1')
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:14:47 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/19 14:55:41 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:32:58 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,16 @@
 # include <stdio.h>
 # include <unistd.h>
 
-// # define MAP_EXIT 'E'
-// # define MAP_ENTRY 'P'
-// # define MAP_COLLECTIBLE 'C'
-// # define MAP_WALL '1'
-// # define MAP_FLOOR '0'
-
-# define PARAM_ERROR "Error - Incorrect number of parameters\n"
-# define EXT_ERROR "Error - File has invalid file extension\n"
-# define EMPTY_ERROR "Error - Map is empty\n"
-# define RECT_ERROR "Error - Map is not rectangle.\n"
-# define ITEMS_ERROR "Error - Map have the wrongs components\n"
-# define WALL_ERROR "Error - Map don't have close walls\n"
-# define MAP_ERROR "Error - Map is wrong\n"
-# define MIN_COMP_ERROR "Error - You don't have the correct components\n"
-# define PATH_ERROR "Error - There is not a valid path\n"
-# define MAP_SUCCESS "SUCCESS! - Your map is perfect!\n"
+# define PARAM_ERROR "Error - Incorrect number of parameters.\n\n"
+# define EXT_ERROR "Error - File has invalid file extension.\n\n"
+# define EMPTY_ERROR "Error - Map is empty.\n\n"
+# define RECT_ERROR "Error - Map is not rectangle.\n\n"
+# define ITEMS_ERROR "Error - Map have the wrongs components.\n\n"
+# define WALL_ERROR "Error - Map don't have close walls.\n\n"
+# define MAP_ERROR "Error - Map is wrong.\n\n"
+# define MIN_COMP_ERROR "Error - You don't have the correct components.\n\n"
+# define PATH_ERROR "Error - There is not a valid path.\n\n"
+# define MAP_SUCCESS "SUCCESS! - Your map is perfect!\n\n"
 
 # define BUFF_SIZE 10000
 # define MOVE		32
@@ -91,7 +85,7 @@ int		items_check(char **map);
 int		walls_check(char **map);
 
 //COMPL_MAP_CHECK.C
-int		start_size_collect(t_game *game, char **map);
+int		start_size_map(t_game *game, char **map);
 int		check_path(t_game *game);
 int		*start_player(char **map);
 void	flood_fill(t_game *game, int x, int y);
@@ -112,7 +106,9 @@ void	go_left(t_game *game);
 void	go_right(t_game *game);
 
 // COLLECTS.C
+int		start_collect(t_game *game, char **map);
 int		min_items_check(char **map);
 void	manage_collect_exit(t_game *game);
 void	change_view(t_game *game);
+
 #endif

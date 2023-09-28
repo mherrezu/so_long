@@ -6,7 +6,7 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:15:59 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/19 14:56:37 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:32:17 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,14 @@ int	main(int argc, char **argv)
 		return (1);
 	if (map_checker(game.map) == 1)
 		return (free_map(game.map), 1);
-	if (start_size_collect(&game, game.map) == 1)
+	if (start_size_map(&game, game.map) == 1)
 		return (free_map(game.map), 1);
 	game.aux_map = get_map(argv[1]);
 	if (!game.aux_map)
 		return (free_map(game.aux_map), 1);
 	if (check_path(&game) == 1)
-		return (ft_printf(PATH_ERROR), 1);
+		return (ft_printf(PATH_ERROR), free_map(game.map), 1);
 	if (start_game(&game) == 1)
 		return (free_map(game.aux_map), 1);
-	system("leaks -q so_long");
 	return (0);
 }

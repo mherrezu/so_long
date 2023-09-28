@@ -6,39 +6,24 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:42:06 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/19 14:57:36 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/28 12:26:49 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 //Start map's size and collectibles.
-int	start_size_collect(t_game *game, char **map)
+int	start_size_map(t_game *game, char **map)
 {
 	int	i;
-	int	j;
-	int	collect;
 
-	i = 0;
-	collect = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'C')
-				collect++;
-			j++;
-		}
-		i++;
-	}
-	game->total_collect = collect;
+	if (start_collect(game, map) == 1)
+		return (1);
 	game->map_width = ft_strlen(map[0]) * 32;
 	i = 0;
 	while (map[i++])
 		game->map_height = i * 32;
-	if (game->total_collect == 0 || game->map_width == 0
-		|| game->map_height == 0)
+	if (game->map_width == 0 || game->map_height == 0)
 		return (1);
 	return (0);
 }

@@ -6,13 +6,39 @@
 /*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 13:00:18 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/19 15:00:40 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/09/27 18:32:33 by mherrezu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//Map must have at least 1 entry, 1 exit and 1 collectible
+//Start map's collectibles.
+int	start_collect(t_game *game, char **map)
+{
+	int	i;
+	int	j;
+	int	collect;
+
+	i = 0;
+	collect = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				collect++;
+			j++;
+		}
+		i++;
+	}
+	game->total_collect = collect;
+	if (game->total_collect == 0)
+		return (1);
+	return (0);
+}
+
+//Map must have only 1 entry, 1 exit and  at least 1 collectible
 int	min_items_check(char **map)
 {
 	int	i;
