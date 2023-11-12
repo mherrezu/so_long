@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:08:11 by mherrezu          #+#    #+#             */
-/*   Updated: 2022/10/01 15:19:42 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:52:30 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	ft_isascii(int c)
 {
-	char	a;
+	// char	a;
 
-	a = c + '0';
+	// a = c + '0';
 	if (c >= 0 && c <= 127)
 		return (1);
 	else

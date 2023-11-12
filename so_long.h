@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mherrezu <mherrezu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mariah. <mariah.@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:14:47 by mherrezu          #+#    #+#             */
-/*   Updated: 2023/09/27 18:32:58 by mherrezu         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:00:03 by mariah.          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 # define SO_LONG_H
 
 # include "print_libft/libft.h"
-# include "get_next_line/get_next_line.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
+# include <limits.h>
 
 # define PARAM_ERROR "Error - Incorrect number of parameters.\n\n"
 # define EXT_ERROR "Error - File has invalid file extension.\n\n"
